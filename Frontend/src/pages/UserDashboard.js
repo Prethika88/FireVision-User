@@ -14,6 +14,8 @@ function UserDashboard() {
           "Fire Safety Chatbot",
           "My Area Fire Risk Monitor",
           "Safe Route Finder",
+          "CommunityReport",
+          "FireIncidentReport",
         ]}
       />
 
@@ -58,8 +60,8 @@ function UserDashboard() {
                 bg-gradient-to-r from-orange-500/30 via-red-500/30 to-transparent" />
             </div>
 
-            {/* Main Features Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            {/* Main Features Grid - First Row (3 cards) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
               
               {/* Feature Card 1 - Chatbot */}
               <FeatureCard
@@ -85,7 +87,7 @@ function UserDashboard() {
                   { label: "Updates", value: "Live" }
                 ]}
                 buttonText="View Risk Map"
-                onClick={() => navigate("/fire-risk-advanced")}
+                onClick={() => navigate("/fire-risk")}
                 gradient="from-red-500 to-orange-600"
               />
 
@@ -101,6 +103,39 @@ function UserDashboard() {
                 buttonText="Find Route"
                 onClick={() => navigate("/safe-route")}
                 gradient="from-orange-600 to-red-500"
+              />
+            </div>
+
+            {/* Second Row (2 cards) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+              
+              {/* Feature Card 4 - Community Reports */}
+              <FeatureCard
+                icon=""
+                title="Community Fire Reports"
+                description="Submit and view fire incidents reported by your community members"
+                stats={[
+                  { label: "Contributors", value: "Active" },
+                  { label: "Verification", value: "AI" }
+                ]}
+                buttonText="Report Fire"
+                onClick={() => navigate("/community-reports")}
+                
+                gradient="from-red-600 to-orange-700"
+              />
+
+              {/* Feature Card 5 - Fire Incident Report */}
+              <FeatureCard
+                icon=""
+                title="Fire Incident Report"
+                description="View real-time analytics and detailed incident reports of all fire events"
+                stats={[
+                  { label: "Data", value: "Real-time" },
+                  { label: "Monitoring", value: "Yes" }
+                ]}
+                buttonText="View Reports"
+                onClick={() => navigate("/incident-report")}
+                gradient="from-orange-700 to-red-600"
               />
             </div>
 
@@ -274,32 +309,6 @@ function QuickActionButton({ icon, label, onClick }) {
   );
 }
 
-function StatusItem({ label, status, description }) {
-  return (
-    <div className="flex items-center justify-between p-4 rounded-xl
-      bg-[#0f0f0f]/50 border border-orange-500/10">
-      
-      <div className="flex items-center gap-3">
-        <div className={`w-3 h-3 rounded-full ${
-          status === 'online' ? 'bg-green-500' : 'bg-red-500'
-        } animate-pulse`} />
-        <div>
-          <div className="text-white font-semibold">{label}</div>
-          <div className="text-slate-500 text-sm">{description}</div>
-        </div>
-      </div>
-
-      <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-        status === 'online' 
-          ? 'bg-green-500/20 text-green-400' 
-          : 'bg-red-500/20 text-red-400'
-      }`}>
-        {status.toUpperCase()}
-      </span>
-    </div>
-  );
-}
-
 function StatBox({ value, label, icon }) {
   return (
     <div className="text-center p-6 rounded-2xl
@@ -334,7 +343,7 @@ function Modal({ children, onClose }) {
           className="absolute top-6 right-6 w-10 h-10 rounded-full
             bg-red-500/20 text-red-400 hover:bg-red-500/30
             flex items-center justify-center transition">
-          ✕
+            ✕
         </button>
 
         <div className="p-8">
@@ -455,12 +464,12 @@ function EmergencyCallContent() {
            What to Tell Emergency Services:
         </h3>
         <ul className="text-slate-300 space-y-2">
-          <li>✓ Your exact location/address with landmarks</li>
-          <li>✓ Nature of emergency (fire size, location in building)</li>
-          <li>✓ If anyone is trapped or injured</li>
-          <li>✓ Your name and callback number</li>
-          <li>✓ Any hazardous materials involved (gas, chemicals)</li>
-          <li>✓ Stay on the line until told to hang up</li>
+          <li> Your exact location/address with landmarks</li>
+          <li> Nature of emergency (fire size, location in building)</li>
+          <li> If anyone is trapped or injured</li>
+          <li> Your name and callback number</li>
+          <li> Any hazardous materials involved (gas, chemicals)</li>
+          <li> Stay on the line until told to hang up</li>
         </ul>
       </div>
     </div>
@@ -617,11 +626,11 @@ function SafetyTipsContent() {
            Remember These Key Rules:
         </h3>
         <ul className="text-slate-300 space-y-2">
-          <li>✓ <strong>GET OUT, STAY OUT</strong> - Never go back inside a burning building</li>
-          <li>✓ <strong>CRAWL LOW</strong> - Stay below smoke to breathe cleaner air</li>
-          <li>✓ <strong>STOP, DROP, ROLL</strong> - If clothes catch fire</li>
-          <li>✓ <strong>COOL THE BURN</strong> - Use cool water, not ice</li>
-          <li>✓ <strong>CALL FOR HELP</strong> - Dial emergency services from outside</li>
+          <li> <strong>GET OUT, STAY OUT</strong> - Never go back inside a burning building</li>
+          <li> <strong>CRAWL LOW</strong> - Stay below smoke to breathe cleaner air</li>
+          <li> <strong>STOP, DROP, ROLL</strong> - If clothes catch fire</li>
+          <li> <strong>COOL THE BURN</strong> - Use cool water, not ice</li>
+          <li> <strong>CALL FOR HELP</strong> - Dial emergency services from outside</li>
         </ul>
       </div>
     </div>

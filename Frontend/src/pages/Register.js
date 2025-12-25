@@ -8,34 +8,40 @@ function Register() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+ 
+  const handleRegister = async (e) => {
+  e.preventDefault();
+  setError("");
+  setMessage("");
 
-    // Get existing users
-    const users = JSON.parse(localStorage.getItem("firevision_users")) || [];
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        password
+      })
+    });
 
-    // Check if user already exists
-    const userExists = users.find((u) => u.email === email);
+    const data = await res.json();
 
-    if (userExists) {
-      setError(" User already registered");
-      setMessage("");
+    if (!data.success) {
+      setError(data.message);
       return;
     }
 
-    // Save new user
-    users.push({ name, email, password });
-    localStorage.setItem("firevision_users", JSON.stringify(users));
-
     setMessage(" User registered successfully");
-    setError("");
 
-    // Clear form
     setName("");
     setEmail("");
     setPassword("");
-  };
 
+  } catch (err) {
+    setError(" Server error. Please try again.");
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden
       bg-gradient-to-br from-[#0b0b0b] via-[#140b05] to-[#1a0c05]"

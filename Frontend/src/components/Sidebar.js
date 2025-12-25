@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Sidebar() {
@@ -7,8 +7,11 @@ function Sidebar() {
 
   const menu = [
     { text: "Fire Safety Chatbot", path: "/chatbot" },
-    { text: "My Area Fire Risk Monitor", path: "/fire-risk-advanced" },
+    { text: "My Area Fire Risk Monitor", path: "/fire-risk" },
     { text: "Safe Route Finder", path: "/safe-route" },
+      //  NEW FEATURES
+  { text: "Community Fire Reports", path: "/community-reports" },
+  { text: "Fire Incident Report", path: "/incident-report" },
   ];
 
   return (
