@@ -96,7 +96,13 @@ const Chat = mongoose.model("Chat", ChatSchema);
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+    phone: {
+    type: String,
+    required: true,
+    unique: true
+  },
   password: { type: String, required: true },
+  
 
   role: { type: String, default: "user" },
   createdAt: { type: Date, default: Date.now }
@@ -627,27 +633,33 @@ app.patch("/api/reports/:id/status", async (req, res) => {
 ================================ */
 app.post("/api/auth/register", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    console.log("REGISTER REQ BODY =>", req.body);
+    const { name, email, phone, password } = req.body;
 
-    if (!name || !email || !password) {
+
+    if (!name || !email || !phone || !password) {
       return res.status(400).json({
         success: false,
         message: "All fields are required"
       });
     }
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({
+  $or: [{ email }, { phone }]
+});
+
     if (existingUser) {
-      return res.status(400).json({
-        success: false,
-        message: "User already exists"
-      });
-    }
+  return res.status(400).json({
+    success: false,
+    message: "User already exists with this email or phone number"
+  });
+}
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
       name,
       email,
+      phone,    
       password: hashedPassword
     });
 

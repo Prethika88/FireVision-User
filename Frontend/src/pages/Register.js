@@ -4,44 +4,47 @@ import { Link } from "react-router-dom";
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
- 
   const handleRegister = async (e) => {
-  e.preventDefault();
-  setError("");
-  setMessage("");
+    e.preventDefault();
+    setError("");
+    setMessage("");
 
-  try {
-    const res = await fetch("http://localhost:5000/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        password
-      })
-    });
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          password
+        })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!data.success) {
-      setError(data.message);
-      return;
+      if (!data.success) {
+        setError(data.message);
+        return;
+      }
+
+      setMessage(" User registered successfully");
+
+      setName("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
+
+    } catch (err) {
+      setError(" Server error. Please try again.");
     }
+  };
 
-    setMessage(" User registered successfully");
-
-    setName("");
-    setEmail("");
-    setPassword("");
-
-  } catch (err) {
-    setError(" Server error. Please try again.");
-  }
-};
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden
       bg-gradient-to-br from-[#0b0b0b] via-[#140b05] to-[#1a0c05]"
@@ -100,6 +103,21 @@ function Register() {
           placeholder="Email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full p-3 mb-4 rounded-lg
+            bg-[#141414] text-slate-200
+            border border-orange-500/20
+            placeholder-slate-500
+            focus:outline-none focus:ring-2
+            focus:ring-orange-500/50"
+        />
+
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          pattern="[0-9]{10}"
           required
           className="w-full p-3 mb-4 rounded-lg
             bg-[#141414] text-slate-200
