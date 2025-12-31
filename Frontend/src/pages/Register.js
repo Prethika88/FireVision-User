@@ -46,125 +46,86 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden
-      bg-gradient-to-br from-[#0b0b0b] via-[#140b05] to-[#1a0c05]"
-    >
-      {/* Background glow */}
-      <div className="absolute -top-40 -left-40 w-[600px] h-[600px]
-        bg-orange-500/20 rounded-full blur-[160px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px]
-        bg-red-500/20 rounded-full blur-[160px]" />
+  <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <form
+      onSubmit={handleRegister}
+      className="w-full max-w-md bg-white p-8 rounded-lg shadow-md border border-gray-200">
+      {/* Header */}
+      <h2 className="text-4xl font-extrabold text-center text-orange-600">
+        Create Account
+      </h2>
+      <p className="text-center text-gray-500 mt-2 mb-6">
+        FireVision User Registration
+      </p>
 
-      <form
-        onSubmit={handleRegister}
-        className="relative z-10 w-full max-w-md p-10 rounded-2xl
-        bg-[#0f0f0f]/80 backdrop-blur-xl
-        border border-orange-500/20
-        shadow-[0_0_40px_rgba(255,90,0,0.35)]"
-      >
-        <h2 className="text-4xl font-extrabold text-center
-          bg-gradient-to-r from-orange-400 to-red-500
-          bg-clip-text text-transparent">
-          Create Account
-        </h2>
+      {/* Messages */}
+      {message && (
+        <div className="mb-4 text-green-600 text-sm text-center">
+          {message}
+        </div>
+      )}
+      {error && (
+        <div className="mb-4 text-red-600 text-sm text-center">
+          {error}
+        </div>
+      )}
 
-        <p className="text-center text-slate-400 mt-2 mb-6">
-          Join FireVision today
-        </p>
+      {/* Inputs */}
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        className="w-full p-3 mb-4 rounded-lg border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+      <input
+        type="email"
+        placeholder="Email Address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="w-full p-3 mb-4 rounded-lg border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        pattern="[0-9]{10}"
+        required
+        className="w-full p-3 mb-4 rounded-lg border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        className="w-full p-3 mb-6 rounded-lg border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-orange-500"/>
 
-        {/* Messages */}
-        {message && (
-          <div className="mb-4 text-green-400 text-sm text-center">
-            {message}
-          </div>
-        )}
-        {error && (
-          <div className="mb-4 text-red-400 text-sm text-center">
-            {error}
-          </div>
-        )}
+      {/* Button – SAME AS DASHBOARD */}
+      <button
+        type="submit"
+        className="w-full flex items-center justify-center gap-2
+        bg-orange-600 hover:bg-orange-700
+        text-white px-4 py-3 rounded-lg font-semibold
+        transition shadow-md">
+        Register
+      </button>
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="w-full p-3 mb-4 rounded-lg
-            bg-[#141414] text-slate-200
-            border border-orange-500/20
-            placeholder-slate-500
-            focus:outline-none focus:ring-2
-            focus:ring-orange-500/50"
-        />
-
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full p-3 mb-4 rounded-lg
-            bg-[#141414] text-slate-200
-            border border-orange-500/20
-            placeholder-slate-500
-            focus:outline-none focus:ring-2
-            focus:ring-orange-500/50"
-        />
-
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          pattern="[0-9]{10}"
-          required
-          className="w-full p-3 mb-4 rounded-lg
-            bg-[#141414] text-slate-200
-            border border-orange-500/20
-            placeholder-slate-500
-            focus:outline-none focus:ring-2
-            focus:ring-orange-500/50"
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="w-full p-3 mb-6 rounded-lg
-            bg-[#141414] text-slate-200
-            border border-orange-500/20
-            placeholder-slate-500
-            focus:outline-none focus:ring-2
-            focus:ring-orange-500/50"
-        />
-
-        <button
-          type="submit"
-          className="w-full py-3 rounded-lg
-            bg-gradient-to-r from-orange-500 to-red-500
-            text-white font-semibold text-lg
-            shadow-[0_0_25px_rgba(255,90,0,0.7)]
-            hover:scale-[1.03]
-            transition-all duration-300"
-        >
-          Register
-        </button>
-
-        <p className="text-sm text-center mt-6 text-slate-400">
-          Already have an account?{" "}
-          <Link
-            to="/"
-            className="text-orange-400 font-semibold hover:text-orange-300"
-          >
-            Login
-          </Link>
-        </p>
-      </form>
-    </div>
-  );
+      {/* Footer */}
+      <p className="text-sm text-center mt-6 text-gray-600">
+        Already have an account?{" "}
+        <Link
+          to="/"
+          className="text-orange-600 font-semibold hover:underline">
+          Login
+        </Link>
+      </p>
+    </form>
+  </div>
+);
 }
-
 export default Register;

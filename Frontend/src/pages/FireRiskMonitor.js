@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-
 /* Leaflet icon fix */
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -10,9 +9,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
-
 const OWM_KEY = process.env.REACT_APP_OWM_KEY;
-
 export default function AreaFireRiskAdvanced() {
   const [area, setArea] = useState("");
   const [coords, setCoords] = useState(null);
@@ -143,15 +140,13 @@ export default function AreaFireRiskAdvanced() {
 
   /* ---------- UI ---------- */
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black p-6 text-white">
-      <div className="max-w-6xl mx-auto rounded-2xl bg-zinc-950/80 backdrop-blur
-        border border-orange-600/40 shadow-[0_0_40px_rgba(255,80,0,0.3)] p-6">
-
-        <h2 className="text-3xl font-extrabold text-orange-500">
+    <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-orange-100 p-6 text-gray-800">
+      <div className="max-w-6xl mx-auto rounded-2xl bg-white
+border border-orange-200 shadow-xl p-6">
+        <h2 className="text-3xl font-extrabold text-orange-600">
            My Area Fire Risk Monitor <span className="text-sm text-red-400"></span>
         </h2>
         <p className="text-zinc-400 mb-6">
-
         </p>
 
         {/* CONTROLS */}
@@ -163,33 +158,28 @@ export default function AreaFireRiskAdvanced() {
               setError("");
             }}
             placeholder="Enter city / area"
-            className="flex-1 px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700
-            focus:outline-none focus:ring-2 focus:ring-orange-500"
-          />
-
+            className="flex-1 px-4 py-3 rounded-xl bg-white border border-orange-300
+focus:outline-none focus:ring-2 focus:ring-orange-500"/>
           <button
             onClick={fetchByCity}
-            className="px-6 py-3 rounded-xl font-semibold bg-blue-600 hover:bg-blue-700"
-          >
+            className="px-6 py-3 rounded-xl font-semibold
+bg-green-500 text-white hover:bg-green-600">
             Check by City
           </button>
-
           <button
             onClick={useMyLocation}
-            className="px-6 py-3 rounded-xl font-bold
-            bg-gradient-to-r from-orange-500 via-red-500 to-red-700
-            shadow-[0_0_25px_rgba(255,80,0,0.7)] hover:scale-[1.02]"
-          >
+            className="px-6 py-3 rounded-xl font-bold text-white
+bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600">
              Use My Location
           </button>
         </div>
-
         {error && (
-          <div className="mb-4 rounded-lg bg-red-900/40 px-4 py-2 text-red-300">
-            {error}
-          </div>
-        )}
-
+  <div className="mb-4 px-4 py-3 rounded-xl
+    bg-orange-50 border border-orange-300
+    text-orange-600 font-medium">
+     {error}
+  </div>
+)}
         {weather && risk && (
           <div className="grid md:grid-cols-2 gap-6">
 
@@ -205,38 +195,38 @@ export default function AreaFireRiskAdvanced() {
                   {risk.level}
                 </span>
               </h3>
-
-              <ul className="space-y-2 text-zinc-300">
+              <ul className="space-y-2 text-gray-700">
                 <li> Location: {weather.name}</li>
                 <li> Temperature: {weather.temp} °C</li>
                 <li> Humidity: {weather.humidity} %</li>
                 <li> Wind: {weather.wind} km/h</li>
               </ul>
-
-              <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-700">
+              <div className="p-4 rounded-xl bg-white border border-orange-200">
                  Safety Score: <b>{risk.safety}/100</b><br />
-                 FDI: {risk.fdi}
+                 FDI: <b>{risk.fdi}</b>
               </div>
-
               {trend && forecast && (
-                <div className="p-4 rounded-xl bg-zinc-900 border border-orange-600/40">
-                  <h4 className="font-semibold"> Fire Risk Trend (Next 3 Hours)</h4>
-                  <p className={`font-bold ${
-                    trend === "Increasing" ? "text-red-500" :
-                    trend === "Decreasing" ? "text-green-500" :
-                    "text-yellow-400"}`}>
-                    {trend}
-                  </p>
-                  <p className="text-sm text-zinc-400">
-                    Forecast → Temp: {forecast.temp}°C | Humidity: {forecast.humidity}% | Wind: {forecast.wind} km/h
-                  </p>
-                </div>
-              )}
+  <div className="p-6 rounded-2xl bg-orange-500/10 border border-orange-500/30">
+    <h4 className="text-black-600 font-semibold text-lg mb-2">
+      Fire Risk Trend (Next 3 Hours)
+    </h4>
+    <p className={`font-bold text-lg ${
+      trend === "Increasing" ? "text-red-600" :
+      trend === "Decreasing" ? "text-green-600" :
+      "text-orange-500"
+    }`}>
+      {trend}
+    </p>
+    <p className="text-sm text-gray-700 mt-1">
+      Forecast → Temp: {forecast.temp}°C | Humidity: {forecast.humidity}% | Wind: {forecast.wind} km/h
+    </p>
+  </div>
+)}
             </div>
 
             {/* MAP */}
             <div className="h-[360px] rounded-2xl overflow-hidden
-              border border-orange-600/40 shadow-[0_0_30px_rgba(255,80,0,0.4)]">
+              border border-orange-300 bg-white shadow-[0_0_30px_rgba(255,80,0,0.4)]">
               {coords && (
                 <MapContainer center={coords} zoom={10} className="h-full w-full">
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -246,7 +236,6 @@ export default function AreaFireRiskAdvanced() {
                 </MapContainer>
               )}
             </div>
-
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Filter, MapPin, Clock, AlertTriangle, Flame, Users, TrendingUp, X } from 'lucide-react';
-
 function AdvancedFireReportsMap() {
   const [reports, setReports] = useState([]);
   const [filteredReports, setFilteredReports] = useState([]);
@@ -174,18 +173,19 @@ function AdvancedFireReportsMap() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-4">
+    <div className="min-h-screen bg-[#fff7ed] p-4">
       <div className="max-w-7xl mx-auto">
+
         {/* Header */}
         <div className="mb-6">
-          <div className="bg-gradient-to-r from-orange-600 via-red-600 to-red-700 rounded-2xl p-6 shadow-2xl">
+          <div className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 
+rounded-2xl p-6 shadow-[0_20px_50px_rgba(255,140,0,0.3)]">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
                 <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-                
                   Fire Incident Report
                 </h1>
-                <p className="text-orange-100 mt-1">Real-time incident monitoring and analysis</p>
+                <p className="text-white mt-1">Real-time incident monitoring and analysis</p>
               </div>
               <div className="flex gap-2">
                 <button
@@ -215,70 +215,73 @@ function AdvancedFireReportsMap() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 shadow-lg">
+          <div className="bg-blue-500 rounded-xl p-5 shadow-md hover:shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">Total Reports</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats.total}</p>
+                <p className="text-black-600 text-sm font-medium">Total Reports</p>
+<p className="text-3xl font-bold text-black mt-1">{stats.total}</p>
               </div>
-        
             </div>
           </div>
-
           <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-xl p-5 shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Verified</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats.verified}</p>
+                <p className="text-black-600 text-sm font-medium">Verified</p>
+<p className="text-3xl font-bold text-black mt-1">{stats.verified}</p>
               </div>
-           
             </div>
           </div>
-
           <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-xl p-5 shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-red-100 text-sm font-medium">Critical</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats.critical}</p>
+                <p className="text-black-600 text-sm font-medium">Critical</p>
+<p className="text-3xl font-bold text-black mt-1">{stats.critical}</p>
               </div>
-         
             </div>
           </div>
-
           <div className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl p-5 shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-orange-100 text-sm font-medium">Avg Urgency</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats.avgUrgency.toFixed(1)}</p>
+                <p className="text-black-600 text-sm font-medium">Avg Urgency</p>
+<p className="text-3xl font-bold text-black mt-1">
+  {stats.avgUrgency.toFixed(1)}
+</p>
               </div>
-           
             </div>
           </div>
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 mb-6 border border-gray-700">
+        <div className="bg-white border border-orange-200 shadow-md mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {/* Search */}
             <div className="lg:col-span-2">
               <div className="relative">
                 <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                 <input
-                  type="text"
-                  placeholder="Search location or fire type..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-                />
+  type="text"
+  placeholder="Search location or fire type..."
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  className="w-full pl-10 pr-4 py-2.5 
+             bg-white text-gray-800 
+             border border-orange-300 rounded-lg 
+             placeholder-gray-400
+             focus:border-orange-500 focus:ring-2 focus:ring-orange-400
+             outline-none"
+/>
               </div>
             </div>
 
             {/* Severity Filter */}
             <select
-              value={filters.severity}
-              onChange={(e) => setFilters({ ...filters, severity: e.target.value })}
-              className="px-4 py-2.5 bg-gray-900 border border-gray-600 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-            >
+  value={filters.severity}
+  onChange={(e) => setFilters({ ...filters, severity: e.target.value })}
+  className="px-4 py-2.5 
+             bg-white text-gray-800 
+             border border-orange-300 rounded-lg
+             focus:border-orange-500 focus:ring-2 focus:ring-orange-400
+             outline-none">
               <option value="all">All Severities</option>
               <option value="low">Low</option>
               <option value="moderate">Moderate</option>
@@ -288,10 +291,13 @@ function AdvancedFireReportsMap() {
 
             {/* Status Filter */}
             <select
-              value={filters.status}
-              onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="px-4 py-2.5 bg-gray-900 border border-gray-600 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-            >
+  value={filters.status}
+  onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+  className="px-4 py-2.5 
+             bg-white text-gray-800 
+             border border-orange-300 rounded-lg
+             focus:border-orange-500 focus:ring-2 focus:ring-orange-400
+             outline-none">
               <option value="all">All Statuses</option>
               <option value="verified">Verified</option>
               <option value="pending">Pending</option>
@@ -299,10 +305,13 @@ function AdvancedFireReportsMap() {
 
             {/* Time Range Filter */}
             <select
-              value={filters.timeRange}
-              onChange={(e) => setFilters({ ...filters, timeRange: e.target.value })}
-              className="px-4 py-2.5 bg-gray-900 border border-gray-600 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-            >
+  value={filters.timeRange}
+  onChange={(e) => setFilters({ ...filters, timeRange: e.target.value })}
+  className="px-4 py-2.5 
+             bg-white text-gray-800 
+             border border-orange-300 rounded-lg
+             focus:border-orange-500 focus:ring-2 focus:ring-orange-400
+             outline-none">
               <option value="all">All Time</option>
               <option value="1h">Last Hour</option>
               <option value="6h">Last 6 Hours</option>
@@ -327,42 +336,42 @@ function AdvancedFireReportsMap() {
             {filteredReports.map((report) => {
               const extracted = report.extractedInfo;
               const verification = report.verification;
-
               return (
                 <div
-                  key={report._id}
-                  className="group bg-gray-800/70 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/20 cursor-pointer"
-                  onClick={() => setSelectedReport(report)}
-                >
+  key={report._id}
+  className="group bg-white rounded-xl overflow-hidden
+             border border-orange-200
+             transition-all duration-300 cursor-pointer
+             hover:border-orange-400
+             hover:shadow-[0_10px_30px_rgba(255,140,0,0.25)]"
+  onClick={() => setSelectedReport(report)}>
+
                   {/* Urgency Bar */}
                   <div className={`h-1.5 ${getUrgencyBadgeColor(extracted?.urgencyScore)} ${(extracted?.urgencyScore || 0) >= 9 ? 'animate-pulse' : ''}`} />
-                  
                   <div className="p-5">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-2">
-              
                         <span className="font-bold text-white text-lg">Fire Report</span>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${getSeverityColor(extracted.severity || 'unknown')}`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold text-white shadow-md bg-gradient-to-r ${getSeverityColor(extracted.severity || 'unknown')}`}>
                         {(extracted.severity || 'UNKNOWN').toUpperCase()}
                       </span>
                     </div>
 
                     {/* Location */}
                     <div className="flex items-start gap-2 mb-3">
-                   
-                      <span className="text-gray-200 font-medium">{extracted?.location || 'Unknown Location'}</span>
+                      <span className="text-black-200 font-medium">{extracted?.location || 'Unknown Location'}</span>
                     </div>
 
                     {/* Details Grid */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div className="bg-gray-900/50 rounded-lg p-3">
-                        <p className="text-gray-400 text-xs mb-1">Fire Type</p>
+                        <p className="text-gray-100 text-xs mb-1">Fire Type</p>
                         <p className="text-white font-semibold">{extracted.fireType || 'Unknown'}</p>
                       </div>
                       <div className="bg-gray-900/50 rounded-lg p-3">
-                        <p className="text-gray-400 text-xs mb-1">Urgency Score</p>
+                        <p className="text-gray-100 text-xs mb-1">Urgency Score</p>
                         <p className="text-white font-bold text-lg">{extracted.urgencyScore || 0}/10</p>
                       </div>
                     </div>
@@ -370,13 +379,13 @@ function AdvancedFireReportsMap() {
                     {/* Status Badge */}
                     <div className="flex items-center justify-between mb-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        verification?.status === 'verified' 
-                          ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                          : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
-                      }`}>
-                        {verification?.status === 'verified' ? ' Verified' : ' Pending'}
-                      </span>
-                      <span className="text-gray-400 text-sm">
+  verification?.status === 'verified'
+    ? 'bg-green-50 text-green-700 border border-green-300'
+    : 'bg-yellow-50 text-yellow-700 border border-yellow-300'
+}`}>
+  {verification?.status === 'verified' ? ' Verified' : ' Pending'}
+</span>
+                      <span className="text-black-400 text-sm">
                         {Math.round((verification?.confidence || 0) * 100)}% confidence
                       </span>
                     </div>
@@ -392,14 +401,16 @@ function AdvancedFireReportsMap() {
 
                     {/* Footer */}
                     <div className="pt-3 border-t border-gray-700 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-400 text-sm">{formatTimeAgo(report.timestamp)}</span>
-                      </div>
-                      <span className="text-gray-500 text-xs">
-                        {verification?.similarReportsCount || 0} similar
-                      </span>
-                    </div>
+  <div className="flex items-center gap-2">
+    <Clock className="w-4 h-4 text-black" />
+    <span className="text-black text-sm">
+      {formatTimeAgo(report.timestamp)}
+    </span>
+  </div>
+  <span className="text-black text-xs">
+    {verification?.similarReportsCount || 0} similar
+  </span>
+</div>
                   </div>
                 </div>
               );
@@ -409,59 +420,61 @@ function AdvancedFireReportsMap() {
 
         {/* Modal for Selected Report */}
         {selectedReport && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setSelectedReport(null)}>
-            <div className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 bg-[#fff7ed] flex items-center justify-center p-4 z-50"
+onClick={() => setSelectedReport(null)}>
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-orange-200 shadow-xl"
+ onClick={(e) => e.stopPropagation()}>
               {/* Modal Header */}
               <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-red-600 p-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-         
                   Full Report Details
                 </h2>
                 <button
                   onClick={() => setSelectedReport(null)}
-                  className="text-white hover:bg-white/20 rounded-lg p-2 transition-colors"
-                >
+                  className="text-white hover:bg-white/20 rounded-lg p-2 transition-colors">
                   <X className="w-6 h-6" />
                 </button>
               </div>
 
               {/* Modal Content */}
               <div className="p-6 space-y-6">
-                <div className="bg-gray-900/50 rounded-lg p-4">
+                <div className="bg-orange-50 border border-orange-200
+ rounded-lg p-4">
                   <h3 className="text-orange-400 font-semibold mb-2">Report Text</h3>
-                  <p className="text-gray-200">{selectedReport.reportText || 'No description provided'}</p>
+                  <p className="text-gray-800">{selectedReport.reportText || 'No description provided'}</p>
                 </div>
-
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-900/50 rounded-lg p-4">
+                  <div className="bg-orange-50 border border-orange-200
+ rounded-lg p-4">
                     <h3 className="text-orange-400 font-semibold mb-2">Location</h3>
-                    <p className="text-gray-200">{selectedReport.extractedInfo?.location || 'Unknown'}</p>
+                    <p className="text-gray-800">{selectedReport.extractedInfo?.location || 'Unknown'}</p>
                   </div>
-                  <div className="bg-gray-900/50 rounded-lg p-4">
+                  <div className="bg-orange-50 border border-orange-200
+ rounded-lg p-4">
                     <h3 className="text-orange-400 font-semibold mb-2">Fire Type</h3>
-                    <p className="text-gray-200">{selectedReport.extractedInfo?.fireType || 'Unknown'}</p>
+                    <p className="text-gray-800">{selectedReport.extractedInfo?.fireType || 'Unknown'}</p>
                   </div>
-                  <div className="bg-gray-900/50 rounded-lg p-4">
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
                     <h3 className="text-orange-400 font-semibold mb-2">Severity</h3>
-                    <p className="text-gray-200">{selectedReport.extractedInfo?.severity || 'Unknown'}</p>
+                    <p className="text-gray-800">{selectedReport.extractedInfo?.severity || 'Unknown'}</p>
                   </div>
-                  <div className="bg-gray-900/50 rounded-lg p-4">
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
                     <h3 className="text-orange-400 font-semibold mb-2">Urgency</h3>
-                    <p className="text-gray-200 text-2xl font-bold">{selectedReport.extractedInfo?.urgencyScore || 0}/10</p>
+                    <p className="text-gray-800 text-2xl font-bold">{selectedReport.extractedInfo?.urgencyScore || 0}/10</p>
                   </div>
                 </div>
-
-                <div className="bg-gray-900/50 rounded-lg p-4">
+                <div className="bg-orange-50 border border-orange-200
+ rounded-lg p-4">
                   <h3 className="text-orange-400 font-semibold mb-2">Verification Details</h3>
-                  <p className="text-gray-200">Status: {selectedReport.verification?.status || 'Unknown'}</p>
-                  <p className="text-gray-200">Confidence: {Math.round((selectedReport.verification?.confidence || 0) * 100)}%</p>
-                  <p className="text-gray-200">Similar Reports: {selectedReport.verification?.similarReportsCount || 0}</p>
-                  <p className="text-gray-200 mt-2">Reason: {selectedReport.verification?.reason || 'N/A'}</p>
+                  <p className="text-gray-800">Status: {selectedReport.verification?.status || 'Unknown'}</p>
+                  <p className="text-gray-800">Confidence: {Math.round((selectedReport.verification?.confidence || 0) * 100)}%</p>
+                  <p className="text-gray-800">Similar Reports: {selectedReport.verification?.similarReportsCount || 0}</p>
+                  <p className="text-gray-800 mt-2">Reason: {selectedReport.verification?.reason || 'N/A'}</p>
                 </div>
-
-                <div className="bg-gray-900/50 rounded-lg p-4">
+                <div className="bg-orange-50 border border-orange-200
+ rounded-lg p-4">
                   <h3 className="text-orange-400 font-semibold mb-2">Timestamp</h3>
-                  <p className="text-gray-200">{new Date(selectedReport.timestamp).toLocaleString()}</p>
+                  <p className="text-gray-800">{new Date(selectedReport.timestamp).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -471,5 +484,4 @@ function AdvancedFireReportsMap() {
     </div>
   );
 }
-
-export default AdvancedFireReportsMap;
+export default AdvancedFireReportsMap; 

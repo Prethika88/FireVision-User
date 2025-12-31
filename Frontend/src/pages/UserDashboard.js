@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 function UserDashboard() {
   const navigate = useNavigate();
   const [activeModal, setActiveModal] = useState(null);
-
   return (
-    <div className="flex min-h-screen bg-[#0a0a0a]">
+    <div className="flex min-h-screen bg-gray-100">
       <Sidebar
         links={[
           "Fire Safety Chatbot",
@@ -18,44 +17,24 @@ function UserDashboard() {
           "FireIncidentReport",
         ]}
       />
-
       <div className="flex-1 flex flex-col">
         <Navbar />
-
         <div className="flex-1 px-8 py-8 relative overflow-hidden">
-          
-          {/* Animated Background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -top-40 -left-40 w-[800px] h-[800px]
-              bg-orange-500/10 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute top-1/2 right-0 w-[600px] h-[600px]
-              bg-red-500/10 rounded-full blur-[140px] animate-pulse" 
-              style={{ animationDelay: '1s' }} />
-            <div className="absolute bottom-0 left-1/3 w-[700px] h-[700px]
-              bg-orange-600/8 rounded-full blur-[130px] animate-pulse"
-              style={{ animationDelay: '2s' }} />
-          </div>
-
           <div className="relative z-10 max-w-[1600px] mx-auto">
 
             {/* Welcome Header */}
             <div className="mb-12">
               <div className="mb-6">
-                <h1 className="text-6xl font-black mb-4
-                  bg-gradient-to-r from-orange-400 via-orange-500 to-red-600
-                  bg-clip-text text-transparent
-                  drop-shadow-[0_0_30px_rgba(255,120,0,0.6)]">
+                <h1 className="text-4xl font-extrabold mb-4 text-orange-600">
                   Welcome to FireVision AI 
                 </h1>
-                <p className="text-2xl text-slate-300">
+                <p className="text-xl text-gray-600">
                   Your intelligent fire safety companion
                 </p>
               </div>
-
-              <p className="text-lg text-slate-400 max-w-3xl">
+              <p className="text-xl text-gray-600">
                 Access AI-powered tools, monitor risks, and get instant safety guidance - all in one place.
               </p>
-
               <div className="mt-6 h-1 w-full rounded-full
                 bg-gradient-to-r from-orange-500/30 via-red-500/30 to-transparent" />
             </div>
@@ -74,13 +53,12 @@ function UserDashboard() {
                 ]}
                 buttonText="Start Chat"
                 onClick={() => navigate("/chatbot")}
-                gradient="from-orange-500 to-red-600"
-              />
+                gradient="from-orange-500 to-red-600"/>
 
               {/* Feature Card 2 - Risk Monitor */}
               <FeatureCard
                 icon=""
-                title="Area Fire Risk Monitor"
+                title="Fire Risk Monitor"
                 description="Real-time fire risk analysis for your location with weather data"
                 stats={[
                   { label: "Coverage", value: "Global" },
@@ -88,8 +66,7 @@ function UserDashboard() {
                 ]}
                 buttonText="View Risk Map"
                 onClick={() => navigate("/fire-risk")}
-                gradient="from-red-500 to-orange-600"
-              />
+                gradient="from-red-500 to-orange-600"/>
 
               {/* Feature Card 3 - Safe Route */}
               <FeatureCard
@@ -102,8 +79,7 @@ function UserDashboard() {
                 ]}
                 buttonText="Find Route"
                 onClick={() => navigate("/safe-route")}
-                gradient="from-orange-600 to-red-500"
-              />
+                gradient="from-orange-600 to-red-500"/>
             </div>
 
             {/* Second Row (2 cards) */}
@@ -120,9 +96,7 @@ function UserDashboard() {
                 ]}
                 buttonText="Report Fire"
                 onClick={() => navigate("/community-reports")}
-                
-                gradient="from-red-600 to-orange-700"
-              />
+                gradient="from-red-600 to-orange-700"/>
 
               {/* Feature Card 5 - Fire Incident Report */}
               <FeatureCard
@@ -135,32 +109,27 @@ function UserDashboard() {
                 ]}
                 buttonText="View Reports"
                 onClick={() => navigate("/incident-report")}
-                gradient="from-orange-700 to-red-600"
-              />
+                gradient="from-orange-700 to-red-600"/>
             </div>
 
             {/* Quick Actions Section */}
             <div className="mb-10">
-              <h2 className="text-3xl font-bold text-orange-400 mb-6">
+              <h2 className="text-3xl font-extrabold text-orange-600 mb-6">
                 Quick Actions
               </h2>
-              
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <QuickActionButton
                   icon=""
                   label="Emergency Tips"
-                  onClick={() => setActiveModal('emergency')}
-                />
+                  onClick={() => setActiveModal('emergency')}/>
                 <QuickActionButton
                   icon=""
                   label="Emergency Call"
-                  onClick={() => setActiveModal('call')}
-                />
+                  onClick={() => setActiveModal('call')}/>
                 <QuickActionButton
                   icon=""
                   label="First Aid Guide"
-                  onClick={() => setActiveModal('firstaid')}
-                />
+                  onClick={() => setActiveModal('firstaid')}/>
               </div>
             </div>
 
@@ -168,23 +137,20 @@ function UserDashboard() {
             <div className="mb-10">
               
               {/* Daily Safety Tip */}
-              <div className="p-8 rounded-3xl
-                bg-gradient-to-br from-[#1a1a1a]/90 to-[#0f0f0f]/90
-                backdrop-blur-xl border border-orange-500/20
-                shadow-[0_8px_32px_rgba(255,90,0,0.15)]">
-                
+              <div className="p-8 rounded-2xl
+  bg-white
+  border border-gray-200
+  shadow-md">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-4xl"></span>
-                  <h3 className="text-2xl font-bold text-orange-400">
+                  <h3 className="text-2xl font-extrabold text-orange-600">
                     Safety Tip of the Day
                   </h3>
                 </div>
-
-                <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
                   Always keep fire extinguishers in easily accessible locations like the kitchen, 
                   garage, and near fireplaces. Check them monthly and replace every 10 years.
                 </p>
-
                 <button 
                   onClick={() => setActiveModal('safetytips')}
                   className="px-6 py-3 rounded-xl
@@ -197,39 +163,33 @@ function UserDashboard() {
             </div>
 
             {/* Statistics Overview */}
-            <div className="p-8 rounded-3xl
-              bg-gradient-to-br from-[#1a1a1a]/90 to-[#0f0f0f]/90
-              backdrop-blur-xl border border-orange-500/20
-              shadow-[0_8px_32px_rgba(255,90,0,0.15)]">
-              
-              <h3 className="text-2xl font-bold text-orange-400 mb-6">
+            <div className="p-6 rounded-2xl
+  bg-white
+  border border-gray-200
+  shadow-md">
+              <h3 className="text-2xl font-extrabold text-orange-600 mb-6">
                 FireVision Platform Overview
               </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <StatBox
-                  value="24/7"
-                  label="AI Availability"
-                  icon=""
-                />
-                <StatBox
-                  value="Global"
-                  label="Risk Coverage"
-                  icon=""
-                />
-                <StatBox
-                  value="Real-time"
-                  label="Data Updates"
-                  icon=""
-                />
-                <StatBox
-                  value="Secure"
-                  label="Platform"
-                  icon=""
-                />
-              </div>
+  <StatBox
+    value="24/7"
+    label="AI Availability"
+  />
+  <StatBox
+    value="Global"
+    label="Risk Coverage"
+  />
+  <StatBox
+    value="Real-time"
+    label="Data Updates"
+  />
+  <StatBox
+    value="Secure"
+    label="Platform"
+  />
+</div>
             </div>
-
           </div>
         </div>
       </div>
@@ -251,77 +211,72 @@ function UserDashboard() {
 
 function FeatureCard({ icon, title, description, stats, buttonText, onClick, gradient }) {
   return (
-    <div className="p-8 rounded-3xl
-      bg-gradient-to-br from-[#1a1a1a]/90 to-[#0f0f0f]/90
-      backdrop-blur-xl border border-orange-500/20
-      shadow-[0_8px_32px_rgba(255,90,0,0.15)]
-      hover:scale-105 hover:shadow-[0_12px_48px_rgba(255,90,0,0.25)]
-      transition-all duration-300 group
-      flex flex-col h-full">
-      
+    <div className="
+  p-8 rounded-2xl
+  bg-white
+  border border-gray-200
+  shadow-md
+  hover:shadow-lg
+  transition
+  flex flex-col h-full
+">
       <div className="text-6xl mb-4">{icon}</div>
-      
-      <h3 className="text-2xl font-bold text-white mb-3">
+      <h3 className="text-2xl font-extrabold text-orange-600 mb-3">
         {title}
       </h3>
-      
-      <p className="text-slate-400 mb-6 leading-relaxed flex-grow">
+      <p className="text-gray-600 mb-6">
         {description}
       </p>
-
       <div className="grid grid-cols-2 gap-4 mb-6">
         {stats.map((stat, i) => (
-          <div key={i} className="p-3 rounded-xl bg-[#0f0f0f]/50 border border-orange-500/10">
-            <div className="text-orange-400 font-bold">{stat.value}</div>
-            <div className="text-slate-500 text-xs">{stat.label}</div>
-          </div>
+          <div className="p-3 rounded-lg bg-orange-50 border border-orange-200">
+  <div className="text-orange-600 font-extrabold">
+    {stat.value}
+  </div>
+  <div className="text-orange-500 text-xs font-semibold">
+    {stat.label}
+  </div>
+</div>
         ))}
       </div>
-
       <button
         onClick={onClick}
-        className={`w-full py-4 rounded-xl font-bold text-white
-          bg-gradient-to-r ${gradient}
-          shadow-[0_4px_20px_rgba(255,90,0,0.3)]
-          hover:shadow-[0_6px_30px_rgba(255,90,0,0.5)]
-          transition-all duration-300`}>
+        className="w-full py-3 rounded-lg font-semibold
+bg-orange-600 hover:bg-orange-700
+text-white transition shadow-md">
         {buttonText}
       </button>
     </div>
   );
 }
-
 function QuickActionButton({ icon, label, onClick }) {
   return (
     <button
       onClick={onClick}
       className="p-6 rounded-2xl
-        bg-gradient-to-br from-[#1a1a1a]/90 to-[#0f0f0f]/90
-        backdrop-blur-xl border border-orange-500/20
-        hover:border-orange-500/40 hover:scale-105
-        transition-all duration-300 group">
-      
+bg-white
+border border-gray-200
+shadow-md
+hover:shadow-lg
+transition">
       <div className="text-4xl mb-3">{icon}</div>
-      <div className="text-slate-300 font-semibold group-hover:text-orange-400 transition">
+      <div className="text-orange-600 font-extrabold">
         {label}
       </div>
     </button>
   );
 }
-
 function StatBox({ value, label, icon }) {
   return (
-    <div className="text-center p-6 rounded-2xl
-      bg-[#0f0f0f]/50 border border-orange-500/10
-      hover:border-orange-500/30 transition">
-      
+    <div className="text-center p-5 rounded-xl
+  bg-white
+  border border-gray-200
+  shadow-sm">
       <div className="text-3xl mb-2">{icon}</div>
-      <div className="text-3xl font-black
-        bg-gradient-to-br from-orange-400 to-red-500
-        bg-clip-text text-transparent mb-1">
+      <div className="text-3xl font-extrabold text-orange-600 mb-1">
         {value}
       </div>
-      <div className="text-slate-400 text-sm">{label}</div>
+      <div className="text-gray-500 text-sm">{label}</div>
     </div>
   );
 }
@@ -331,21 +286,17 @@ function Modal({ children, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4
       bg-black/80 backdrop-blur-sm animate-fadeIn">
-      
       <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto
-        bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f]
-        border border-orange-500/30 rounded-3xl
-        shadow-[0_20px_60px_rgba(255,90,0,0.3)]
-        animate-slideUp">
-        
+  bg-white
+  border border-gray-300 rounded-2xl
+  shadow-xl">
         <button
           onClick={onClose}
           className="absolute top-6 right-6 w-10 h-10 rounded-full
-            bg-red-500/20 text-red-400 hover:bg-red-500/30
+            bg-gray-100 text-gray-700 hover:bg-gray-200
             flex items-center justify-center transition">
             ✕
         </button>
-
         <div className="p-8">
           {children}
         </div>
@@ -360,13 +311,10 @@ function EmergencyTipsContent() {
     <div>
       <div className="flex items-center gap-4 mb-6">
         <span className="text-6xl"></span>
-        <h2 className="text-4xl font-black
-          bg-gradient-to-r from-orange-400 to-red-500
-          bg-clip-text text-transparent">
+        <h2 className="text-4xl font-extrabold text-orange-600">
           Emergency Fire Tips
         </h2>
       </div>
-
       <div className="space-y-6">
         <EmergencyTip
           number="1"
@@ -399,28 +347,23 @@ function EmergencyTipsContent() {
           description="Go to your predetermined family meeting place and make sure everyone is accounted for."
         />
       </div>
-
-      <div className="mt-8 p-6 rounded-2xl bg-red-500/10 border border-red-500/30">
-        <p className="text-red-400 font-bold text-lg">
-           REMEMBER: Your life is more valuable than any possession. Get out and stay out!
-        </p>
-      </div>
+        <div className="mt-8 p-6 rounded-2xl bg-red-500/10 border border-red-500/30">
+        <p className="text-orange-600 font-bold text-lg mb-2">
+    REMEMBER: Your life is more valuable than any possession. Get out and stay out!
+  </p>
+</div>
     </div>
   );
 }
-
 function EmergencyCallContent() {
   return (
     <div>
       <div className="flex items-center gap-4 mb-6">
         <span className="text-6xl"></span>
-        <h2 className="text-4xl font-black
-          bg-gradient-to-r from-orange-400 to-red-500
-          bg-clip-text text-transparent">
+        <h2 className="text-4xl font-extrabold text-orange-600">
           Emergency Contacts
         </h2>
       </div>
-
       <div className="space-y-4 mb-8">
         <EmergencyContact
           service="Fire Emergency"
@@ -444,26 +387,24 @@ function EmergencyCallContent() {
           description="Natural disasters and emergencies"
         />
       </div>
-
-      <div className="p-6 rounded-2xl bg-blue-500/10 border border-blue-500/30 mb-6">
-        <h3 className="text-blue-400 font-bold text-lg mb-3">
+      <div className="p-6 rounded-2xl bg-orange-500/10 border border-orange-500/30 mb-6">
+        <h3 className="text-orange-600 font-bold text-xl mb-3">
            India Emergency Numbers:
         </h3>
-        <div className="grid grid-cols-2 gap-3 text-slate-300 text-sm">
-          <div>• Police: <span className="text-white font-bold">100</span></div>
-          <div>• Fire: <span className="text-white font-bold">101</span></div>
-          <div>• Ambulance: <span className="text-white font-bold">108</span></div>
-          <div>• Women Helpline: <span className="text-white font-bold">1091</span></div>
-          <div>• Child Helpline: <span className="text-white font-bold">1098</span></div>
-          <div>• Gas Leak: <span className="text-white font-bold">1906</span></div>
+        <div className="grid grid-cols-2 gap-3 text-gray-600 text-sm">
+          <div>• Police: <span className="text-gray font-bold">100</span></div>
+          <div>• Fire: <span className="text-gray font-bold">101</span></div>
+          <div>• Ambulance: <span className="text-gray font-bold">108</span></div>
+          <div>• Women Helpline: <span className="text-gray font-bold">1091</span></div>
+          <div>• Child Helpline: <span className="text-gray font-bold">1098</span></div>
+          <div>• Gas Leak: <span className="text-gray font-bold">1906</span></div>
         </div>
       </div>
-
       <div className="p-6 rounded-2xl bg-orange-500/10 border border-orange-500/30">
-        <h3 className="text-orange-400 font-bold text-xl mb-3">
+        <h3 className="text-orange-600 font-bold text-xl mb-3">
            What to Tell Emergency Services:
         </h3>
-        <ul className="text-slate-300 space-y-2">
+        <ul className="text-gray-600 space-y-2">
           <li> Your exact location/address with landmarks</li>
           <li> Nature of emergency (fire size, location in building)</li>
           <li> If anyone is trapped or injured</li>
@@ -475,19 +416,15 @@ function EmergencyCallContent() {
     </div>
   );
 }
-
 function FirstAidContent() {
   return (
     <div>
       <div className="flex items-center gap-4 mb-6">
         <span className="text-6xl"></span>
-        <h2 className="text-4xl font-black
-          bg-gradient-to-r from-orange-400 to-red-500
-          bg-clip-text text-transparent">
+        <h2 className="text-4xl font-extrabold text-orange-600">
           Fire-Related First Aid
         </h2>
       </div>
-
       <div className="space-y-6">
         <FirstAidSection
           title=" For Burns"
@@ -499,7 +436,6 @@ function FirstAidContent() {
             "For serious burns, seek medical attention immediately"
           ]}
         />
-
         <FirstAidSection
           title=" For Smoke Inhalation"
           steps={[
@@ -510,7 +446,6 @@ function FirstAidContent() {
             "Monitor breathing and pulse until help arrives"
           ]}
         />
-
         <FirstAidSection
           title=" If Someone is Unconscious"
           steps={[
@@ -522,31 +457,26 @@ function FirstAidContent() {
           ]}
         />
       </div>
-
       <div className="mt-8 p-6 rounded-2xl bg-red-500/10 border border-red-500/30">
-        <p className="text-red-400 font-bold text-lg mb-2">
+        <p className="text-orange-600 font-bold text-lg mb-2">
            ALWAYS SEEK PROFESSIONAL MEDICAL HELP
         </p>
-        <p className="text-slate-300">
+        <p className="text-gray-600">
           These are basic first aid tips. For serious injuries, always call 911 and seek professional medical assistance.
         </p>
       </div>
     </div>
   );
 }
-
 function SafetyTipsContent() {
   return (
     <div>
       <div className="flex items-center gap-4 mb-6">
         <span className="text-6xl"></span>
-        <h2 className="text-4xl font-black
-          bg-gradient-to-r from-orange-400 to-red-500
-          bg-clip-text text-transparent">
+        <h2 className="text-4xl font-extrabold text-orange-600">
           Fire Safety Tips
         </h2>
       </div>
-
       <div className="space-y-6">
         <SafetyTipCard
           icon=""
@@ -559,7 +489,6 @@ function SafetyTipsContent() {
             "Develop and practice a fire escape plan with your family twice a year"
           ]}
         />
-
         <SafetyTipCard
           icon=""
           category="Electrical Safety"
@@ -571,7 +500,6 @@ function SafetyTipsContent() {
             "Have old wiring inspected by a licensed electrician"
           ]}
         />
-
         <SafetyTipCard
           icon=""
           category="Heating Safety"
@@ -583,7 +511,6 @@ function SafetyTipsContent() {
             "Keep portable generators outside and at least 20 feet from your home"
           ]}
         />
-
         <SafetyTipCard
           icon=""
           category="Candle & Open Flame Safety"
@@ -595,7 +522,6 @@ function SafetyTipsContent() {
             "Consider using flameless LED candles as a safer alternative"
           ]}
         />
-
         <SafetyTipCard
           icon=""
           category="Smoking Safety"
@@ -607,7 +533,6 @@ function SafetyTipsContent() {
             "Never empty ashtrays into trash cans until contents are completely cold"
           ]}
         />
-
         <SafetyTipCard
           icon=""
           category="Family Preparedness"
@@ -620,12 +545,11 @@ function SafetyTipsContent() {
           ]}
         />
       </div>
-
       <div className="mt-8 p-6 rounded-2xl bg-orange-500/10 border border-orange-500/30">
-        <h3 className="text-orange-400 font-bold text-xl mb-3">
+        <h3 className="text-orange-600 font-bold text-xl mb-3">
            Remember These Key Rules:
         </h3>
-        <ul className="text-slate-300 space-y-2">
+        <ul className="text-gray-600 space-y-2">
           <li> <strong>GET OUT, STAY OUT</strong> - Never go back inside a burning building</li>
           <li> <strong>CRAWL LOW</strong> - Stay below smoke to breathe cleaner air</li>
           <li> <strong>STOP, DROP, ROLL</strong> - If clothes catch fire</li>
@@ -641,63 +565,70 @@ function SafetyTipsContent() {
 function EmergencyTip({ number, title, description }) {
   return (
     <div className="flex gap-4 p-5 rounded-xl
-      bg-[#0f0f0f]/50 border border-orange-500/20
-      hover:border-orange-500/40 transition">
-      
+  bg-white
+  border border-orange-200
+  shadow-sm
+  hover:shadow-md transition">
       <div className="flex-shrink-0 w-12 h-12 rounded-full
         bg-gradient-to-br from-orange-500 to-red-600
         flex items-center justify-center
         text-white font-black text-xl">
         {number}
       </div>
-
       <div>
-        <h3 className="text-orange-400 font-bold text-lg mb-2">{title}</h3>
-        <p className="text-slate-300 leading-relaxed">{description}</p>
+        <h3 className="text-orange-600 font-extrabold text-lg mb-2">
+{title}</h3>
+        <p className="text-gray-600 leading-relaxed">
+{description}</p>
       </div>
     </div>
   );
 }
-
 function EmergencyContact({ service, number, description, isPrimary }) {
   return (
-    <div className={`p-5 rounded-xl border
-      ${isPrimary 
-        ? 'bg-red-500/10 border-red-500/40' 
-        : 'bg-[#0f0f0f]/50 border-orange-500/20'}`}>
-      
+    <div className={`p-5 rounded-xl
+      bg-white
+      border ${isPrimary ? 'border-orange-300' : 'border-orange-200'}
+      shadow-sm hover:shadow-md transition`}>
       <div className="flex items-center justify-between mb-2">
-        <h3 className={`font-bold text-lg ${isPrimary ? 'text-red-400' : 'text-orange-400'}`}>
+        <h3 className="text-orange-600 font-extrabold text-lg">
           {service}
         </h3>
         {isPrimary && (
-          <span className="px-3 py-1 rounded-full bg-red-500/30 text-red-300 text-xs font-bold">
+          <span className="px-3 py-1 rounded-full
+            bg-orange-100 text-orange-600
+            text-xs font-bold">
             EMERGENCY
           </span>
         )}
       </div>
-
-      <a href={`tel:${number.replace(/\D/g, '')}`}
-        className={`text-3xl font-black mb-2 block
-          ${isPrimary ? 'text-red-300' : 'text-white'}
-          hover:text-orange-400 transition`}>
+      <a
+        href={`tel:${number.replace(/\D/g, '')}`}
+        className="text-2xl font-extrabold text-orange-600
+          hover:text-orange-700 transition block mb-1"
+      >
         {number}
       </a>
-
-      <p className="text-slate-400 text-sm">{description}</p>
+      <p className="text-gray-600 text-sm">
+        {description}
+      </p>
     </div>
   );
 }
-
 function FirstAidSection({ title, steps }) {
   return (
-    <div className="p-6 rounded-xl bg-[#0f0f0f]/50 border border-orange-500/20">
-      <h3 className="text-orange-400 font-bold text-xl mb-4">{title}</h3>
+    <div className="p-6 rounded-xl
+      bg-white
+      border border-orange-200
+      shadow-sm">
+      <h3 className="text-orange-600 font-extrabold text-xl mb-4">
+        {title}
+      </h3>
       <ol className="space-y-3">
         {steps.map((step, i) => (
-          <li key={i} className="flex gap-3 text-slate-300">
+          <li key={i} className="flex gap-3 text-gray-600">
             <span className="flex-shrink-0 w-6 h-6 rounded-full
-              bg-orange-500/20 text-orange-400
+              bg-orange-100 text-orange-600
               flex items-center justify-center text-sm font-bold">
               {i + 1}
             </span>
@@ -708,19 +639,22 @@ function FirstAidSection({ title, steps }) {
     </div>
   );
 }
-
 function SafetyTipCard({ icon, category, tips }) {
   return (
-    <div className="p-6 rounded-2xl bg-[#0f0f0f]/50 border border-orange-500/20">
+    <div className="p-6 rounded-2xl
+      bg-white
+      border border-orange-200
+      shadow-sm">
       <div className="flex items-center gap-3 mb-4">
         <span className="text-3xl">{icon}</span>
-        <h3 className="text-xl font-bold text-orange-400">{category}</h3>
+        <h3 className="text-xl font-extrabold text-orange-600">
+          {category}
+        </h3>
       </div>
-      
       <ul className="space-y-3">
         {tips.map((tip, i) => (
-          <li key={i} className="flex gap-3 text-slate-300">
-            <span className="text-orange-400 flex-shrink-0">•</span>
+          <li key={i} className="flex gap-3 text-gray-600">
+            <span className="text-orange-600 flex-shrink-0">•</span>
             <span className="leading-relaxed">{tip}</span>
           </li>
         ))}
@@ -728,5 +662,4 @@ function SafetyTipCard({ icon, category, tips }) {
     </div>
   );
 }
-
 export default UserDashboard;

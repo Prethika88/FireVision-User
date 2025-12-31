@@ -91,16 +91,16 @@ export default function SafeRouteFinder() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white px-4 py-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+      <div className="min-h-screen bg-white text-gray-800 px-4 py-6">
+    <div className="max-w-6xl mx-auto space-y-6">
 
         {/* HEADER */}
         <div>
-          <h1 className="text-4xl font-extrabold text-orange-500 drop-shadow">
+          <h1 className="text-4xl font-extrabold text-orange-600">
              Safe Route Finder
-            <span className="ml-2 text-sm text-red-400">(Fire Emergency)</span>
+            <span className="ml-2 text-sm text-orange-500"></span>
           </h1>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-black-400">
             GPS-based evacuation routing & nearby emergency services
           </p>
         </div>
@@ -108,13 +108,12 @@ export default function SafeRouteFinder() {
         {/* USE LOCATION BUTTON */}
         <button
           onClick={useMyLocation}
-          className="
-            w-full py-4 rounded-2xl text-lg font-semibold
-            bg-gradient-to-r from-orange-500 via-red-500 to-red-700
-            shadow-[0_0_40px_rgba(255,80,0,0.6)]
-            hover:scale-[1.02] transition
-          "
-        >
+           className="
+          w-full py-4 rounded-2xl text-lg font-semibold text-white
+          bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600
+          shadow-lg hover:shadow-orange-300
+          hover:scale-[1.02] transition
+        ">
            Use My Location
         </button>
 
@@ -122,19 +121,18 @@ export default function SafeRouteFinder() {
         {places.length > 0 && (
           <select
             className="
-              w-full p-4 rounded-2xl
-              bg-zinc-900/70 backdrop-blur
-              border border-orange-600
-              focus:outline-none focus:ring-2 focus:ring-orange-500
-            "
+            w-full p-4 rounded-2xl
+            bg-white
+            border border-orange-400
+            focus:outline-none focus:ring-2 focus:ring-orange-500
+            text-gray-700"
             onChange={(e) => {
               const place = places.find(
                 (p) => p.id === Number(e.target.value)
               );
               setSelected(place);
               drawRoute(place);
-            }}
-          >
+            }}>
             <option>Select Safe Zone</option>
             {places.map((p) => (
               <option key={p.id} value={p.id}>
@@ -145,20 +143,17 @@ export default function SafeRouteFinder() {
         )}
 
         {/* MAP CONTAINER */}
-        <div className="relative rounded-3xl overflow-hidden border border-orange-700 shadow-[0_0_45px_rgba(255,60,0,0.4)]">
+        <div className="relative rounded-3xl overflow-hidden border border-orange-300 shadow-lg">
           {!location && (
-            <div className="absolute z-10 top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/70 text-orange-400 animate-pulse">
+             <div className="absolute z-10 top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white text-orange-500 border border-orange-300 animate-pulse">
                Fetching GPS location…
             </div>
           )}
-
           <MapContainer
             center={location ? [location.lat, location.lng] : [13.0827, 80.2707]}
             zoom={13}
-            className="h-[520px] w-full"
-          >
+            className="h-[520px] w-full">
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
             <RecenterMap location={location} />
 
             {/* USER LOCATION */}
@@ -183,20 +178,20 @@ export default function SafeRouteFinder() {
             {route.length > 0 && (
               <>
                 <Polyline
-                  positions={route}
-                  pathOptions={{ color: "#022c22", weight: 10, opacity: 0.9 }}
-                />
-                <Polyline
-                  positions={route}
-                  pathOptions={{ color: "#16a34a", weight: 6 }}
-                />
-              </>
+                positions={route}
+                pathOptions={{ color: "#166534", weight: 6, opacity: 0.9 }}
+              />
+              <Polyline
+                positions={route}
+                pathOptions={{ color: "#166534", weight: 6, opacity: 0.9 }}
+              />
+            </>
             )}
           </MapContainer>
         </div>
 
         {/* FOOTER */}
-        <div className="text-xs text-zinc-500 text-center">
+        <div className="text-xs text-gray-400 text-center">
           Emergency data powered by OpenStreetMap • Routing via OSRM
         </div>
       </div>

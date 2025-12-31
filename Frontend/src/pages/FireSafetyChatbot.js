@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Mic, MicOff, Volume2, VolumeX, Download } from "lucide-react";
-
 function FireSafetyChatbot() {
   const [messages, setMessages] = useState([
     {
@@ -24,7 +23,6 @@ const sessionIdRef = useRef(
 useEffect(() => {
   localStorage.setItem("firevision_session", sessionIdRef.current);
 }, []);
-
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -299,12 +297,11 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4
-      bg-gradient-to-br from-black via-[#0b0b0b] to-[#1a0c05]">
-
+  bg-gradient-to-br from-white via-orange-50 to-orange-100">
       <div className="w-full max-w-4xl h-[85vh]
-        rounded-3xl flex flex-col
-        bg-gradient-to-b from-[#0f0f0f] to-[#090909]
-        border border-orange-500/20 shadow-[0_0_30px_rgba(255,90,0,0.35)]">
+  rounded-3xl flex flex-col
+  bg-white
+  border border-orange-200 shadow-xl">
 
         {/* Header */}
         <div className="px-6 py-4 rounded-t-3xl
@@ -312,17 +309,14 @@ useEffect(() => {
           text-white font-bold text-lg shadow-lg
           flex items-center justify-between">
           <span> FireVision AI – Fire Safety Assistant</span>
-          
           <div className="flex items-center gap-2">
             {/* PDF Export Button */}
             <button
               onClick={exportToPDF}
               disabled={messages.length <= 1}
               className="flex items-center gap-2 text-sm font-normal bg-white/20 
-                px-3 py-1.5 rounded-lg hover:bg-white/30 transition-all
-                disabled:opacity-50 disabled:cursor-not-allowed"
-              title="Download chat as PDF"
-            >
+                px-3 py-1.5 rounded-lg hover:bg-white/30 transition-all"
+              title="Download chat as PDF">
               <Download className="w-4 h-4" />
               <span className="hidden sm:inline">PDF</span>
             </button>
@@ -337,8 +331,7 @@ useEffect(() => {
               }}
               className="flex items-center gap-2 text-sm font-normal bg-white/20 
                 px-3 py-1.5 rounded-lg hover:bg-white/30 transition-all"
-              title={autoSpeak ? "Auto-speak ON" : "Auto-speak OFF"}
-            >
+              title={autoSpeak ? "Auto-speak ON" : "Auto-speak OFF"}>
               {autoSpeak ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
               <span className="hidden sm:inline">{autoSpeak ? "Auto-speak" : "Silent"}</span>
             </button>
@@ -346,8 +339,7 @@ useEffect(() => {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
           {messages.map((msg, i) => (
             <div key={i} className="space-y-2">
               <div
@@ -355,10 +347,11 @@ useEffect(() => {
                   text-sm leading-relaxed whitespace-pre-wrap
                   ${
                     msg.role === "user"
-                      ? "ml-auto bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
-                      : "bg-[#121212] text-gray-200 border border-orange-500/20"
-                  }`}
-              >
+                      ? "ml-auto bg-orange-500 text-white shadow-lg"
+
+                      : "bg-white text-gray-800 border border-orange-200 shadow-sm"
+
+                  }`}>
                 {msg.text}
               </div>
 
@@ -369,8 +362,7 @@ useEffect(() => {
                     onClick={() => isSpeaking ? stopSpeaking() : speakText(msg.text)}
                     className="text-xs text-orange-400 hover:text-orange-300 
                       flex items-center gap-1 px-2 py-1 rounded 
-                      hover:bg-orange-500/10 transition-all"
-                  >
+                      hover:bg-orange-500/10 transition-all">
                     {isSpeaking ? (
                       <>
                         <VolumeX className="w-3 h-3" />
@@ -423,7 +415,7 @@ useEffect(() => {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 flex gap-3 border-t border-orange-500/20 bg-[#0d0d0d]">
+        <div className="p-4 flex gap-3 border-t border-orange-200 bg-white">
           
           {/* Voice Input Button */}
           <button
@@ -436,8 +428,7 @@ useEffect(() => {
               }
               shadow-[0_0_15px_rgba(168,85,247,0.4)]
               disabled:opacity-50 disabled:cursor-not-allowed`}
-            title={isListening ? "Stop listening" : "Click to speak"}
-          >
+            title={isListening ? "Stop listening" : "Click to speak"}>
             {isListening ? (
               <MicOff className="w-5 h-5" />
             ) : (
@@ -454,21 +445,22 @@ useEffect(() => {
             placeholder="Ask about fire safety, emergencies, precautions..."
             disabled={loading || isListening}
             className="flex-1 px-5 py-3 rounded-xl
-              bg-[#121212] text-white placeholder-gray-400
-              border border-orange-500/30
+              bg-white text-gray-800
+ placeholder-gray-400
+              border border-orange-300
               focus:outline-none focus:ring-2 focus:ring-orange-500
-              disabled:opacity-50"
-          />
+              disabled:opacity-50"/>
 
           {/* Send Button */}
           <button
             onClick={() => sendMessage()}
             disabled={loading || !input.trim()}
-            className="px-7 py-3 rounded-xl font-bold text-white
-              bg-gradient-to-r from-orange-500 to-red-600
-              shadow-[0_0_20px_rgba(255,90,0,0.6)]
-              hover:scale-105 transition-all disabled:opacity-50
-              disabled:cursor-not-allowed">
+            className="px-7 py-3 rounded-xl font-bold
+  bg-orange-500 text-white
+  hover:bg-orange-600
+  transition-colors
+  disabled:bg-orange-300
+  disabled:cursor-not-allowed">
             {loading ? "..." : "Send"}
           </button>
         </div>
@@ -488,6 +480,5 @@ useEffect(() => {
     </div>
   );
 }
-
 export default FireSafetyChatbot;
 
